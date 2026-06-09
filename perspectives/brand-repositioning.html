@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Questions I Ask Before Any Brand Repositioning | Nicole Summerlin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azure: #1B4F8A;
+    --azure-light: #2563a8;
+    --azure-pale: #EEF3FA;
+    --azure-rule: #c8d8ee;
+    --ink: #111827;
+    --ink-mid: #374151;
+    --ink-soft: #6B7280;
+    --white: #FFFFFF;
+    --off-white: #F9FAFB;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 1120px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+  .rule { width: 3rem; height: 2px; background: var(--azure); margin-bottom: 1.75rem; }
+  .label { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azure); }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--azure-rule);
+    padding: 1.1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--azure); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--azure); }
+
+  /* ARTICLE HEADER */
+  .article-header {
+    padding: 9rem 0 5rem;
+    background: var(--azure);
+    position: relative; overflow: hidden;
+  }
+  .article-header::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 50%; height: 100%;
+    background: rgba(255,255,255,0.03);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .article-header-inner { position: relative; z-index: 1; max-width: 760px; }
+
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); margin-bottom: 2.5rem;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .back-link:hover { color: var(--white); gap: 0.75rem; }
+  .back-link svg { width: 14px; height: 14px; }
+
+  .article-topic {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 1rem;
+  }
+  .article-header h1 {
+    font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 300; line-height: 1.1; color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .article-header h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
+
+  .article-meta {
+    display: flex; align-items: center; gap: 1.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.5);
+  }
+  .article-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+
+  /* ARTICLE BODY */
+  .article-body { padding: 5rem 0 6rem; }
+  .article-layout { display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start; }
+
+  .article-content { max-width: 680px; }
+
+  .article-content p {
+    font-size: 1rem; line-height: 1.85; color: var(--ink-mid);
+    margin-bottom: 1.5rem;
+  }
+  .article-content p.lead {
+    font-family: var(--serif); font-size: 1.25rem; line-height: 1.65;
+    color: var(--ink); margin-bottom: 2rem;
+  }
+
+  .article-content h2 {
+    font-family: var(--serif); font-size: 1.75rem; font-weight: 400;
+    color: var(--ink); margin-top: 3rem; margin-bottom: 1rem; line-height: 1.2;
+  }
+
+  .question-block {
+    border-left: 3px solid var(--azure);
+    padding: 1.75rem 2rem;
+    margin: 2.5rem 0;
+    background: var(--azure-pale);
+  }
+  .question-num {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--azure); margin-bottom: 0.5rem;
+  }
+  .question-block h3 {
+    font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+    color: var(--ink); margin-bottom: 1rem; line-height: 1.25;
+  }
+  .question-block p {
+    font-size: 0.9rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 0;
+  }
+
+  .pull-quote {
+    border-top: 2px solid var(--azure);
+    border-bottom: 1px solid var(--azure-rule);
+    padding: 2rem 0;
+    margin: 3rem 0;
+  }
+  .pull-quote p {
+    font-family: var(--serif); font-size: 1.45rem; font-weight: 300;
+    line-height: 1.45; color: var(--azure); font-style: italic; margin-bottom: 0;
+  }
+
+  .article-content .closing {
+    border-top: 1px solid var(--azure-rule);
+    padding-top: 2rem;
+    margin-top: 3rem;
+  }
+
+  /* SIDEBAR */
+  .article-sidebar { position: sticky; top: 6rem; }
+
+  .sidebar-card {
+    border: 1px solid var(--azure-rule);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .sidebar-card-label {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--azure); margin-bottom: 1rem;
+  }
+  .sidebar-card h4 {
+    font-family: var(--serif); font-size: 1rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 0.4rem;
+  }
+  .sidebar-card p { font-size: 0.8rem; line-height: 1.6; color: var(--ink-soft); margin-bottom: 0; }
+
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .toc-list li { font-size: 0.8rem; line-height: 1.5; color: var(--ink-mid); padding-left: 1rem; position: relative; }
+  .toc-list li::before { content: '—'; position: absolute; left: 0; color: var(--azure); }
+
+  .sidebar-cta {
+    background: var(--azure); padding: 1.75rem;
+  }
+  .sidebar-cta p { font-size: 0.82rem; line-height: 1.6; color: rgba(255,255,255,0.75); margin-bottom: 1.25rem; }
+  .sidebar-cta a {
+    display: inline-block; padding: 0.7rem 1.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1.5px solid rgba(255,255,255,0.5); color: var(--white);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .sidebar-cta a:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+  /* MORE ARTICLES */
+  .more-articles { padding: 5rem 0; background: var(--off-white); border-top: 1px solid var(--azure-rule); }
+  .more-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--azure); border-bottom: 1px solid var(--azure-rule);
+    padding-bottom: 0.2rem; margin-top: 1.5rem;
+    transition: gap 0.2s, border-color 0.2s;
+  }
+  .more-link:hover { gap: 0.75rem; border-color: var(--azure); }
+  .more-link svg { width: 13px; height: 13px; }
+
+  /* FOOTER */
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+  @media (max-width: 900px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { position: static; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo">Nicole Summerlin</a>
+  <div class="nav-links">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#expertise">Expertise</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#work">Case Studies</a>
+    <a href="../perspectives.html" class="active">Perspectives</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ARTICLE HEADER -->
+<header class="article-header">
+  <div class="container">
+    <div class="article-header-inner fade-in">
+      <a href="../perspectives.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Perspectives
+      </a>
+      <div class="article-topic">Brand Strategy · Repositioning</div>
+      <h1>5 Questions I Ask Before Any Brand <em>Repositioning</em></h1>
+      <div class="article-meta">
+        <span>Nicole Summerlin</span>
+        <span class="article-meta-dot"></span>
+        <span>June 2026</span>
+        <span class="article-meta-dot"></span>
+        <span>7 min read</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE BODY -->
+<section class="article-body">
+  <div class="container">
+    <div class="article-layout">
+
+      <!-- MAIN CONTENT -->
+      <article class="article-content fade-in">
+
+        <p class="lead">Most brand repositioning fails before it ever reaches the customer. Not because the strategy was wrong. Not because the messaging was off. Because someone tried to do in 90 days what takes 18 months.</p>
+
+        <p>I've led repositioning work across B2B manufacturing, luxury real estate, and ecommerce. And the single most consistent mistake I see is treating repositioning like a campaign — something you launch, announce, and move on from.</p>
+
+        <p>It isn't. It's a long-term strategic shift that has to mature incrementally, at a pace that matches where the brand actually lives in the market today.</p>
+
+        <p>Before I approach any repositioning, I ask myself five questions. Not as a checklist. As a diagnostic. Because the answers determine not just the strategy, but the timeline, the sequence, and whether the organization is actually ready to commit to the work ahead.</p>
+
+        <div class="pull-quote">
+          <p>Repositioning done right is invisible to the market. It feels like natural evolution. It feels like the brand simply grew into something more.</p>
+        </div>
+
+        <div class="question-block">
+          <div class="question-num">Question 01</div>
+          <h3>Where does this brand actually live in the mind of the market right now?</h3>
+          <p>Not where leadership thinks it lives. Not where the messaging says it lives. Where customers, prospects, and the broader market actually perceive it. You can't plot a course to somewhere new if you don't have an honest read on where you're starting. This requires real research — customer interviews, sales team debriefs, competitive analysis, and a willingness to hear things that are uncomfortable. The gap between internal perception and external reality is almost always larger than anyone expects.</p>
+        </div>
+
+        <div class="question-block">
+          <div class="question-num">Question 02</div>
+          <h3>What are we protecting while we evolve?</h3>
+          <p>Repositioning isn't erasure. Your existing customers chose you for a reason. The goal is to expand and elevate perception without undermining the trust that already exists. Before changing anything, I identify what is non-negotiable — the elements of the brand that carry real equity with real customers — and build the repositioning strategy around protecting those while stretching toward something new. Lose the trust of your existing base in pursuit of a new audience, and you end up with neither.</p>
+        </div>
+
+        <div class="question-block">
+          <div class="question-num">Question 03</div>
+          <h3>Have we repositioned the internal frameworks before we reposition externally?</h3>
+          <p>This is where most companies stumble. They update the messaging, refresh the website, and launch a campaign — without ever realigning the sales process, the product marketing, the customer experience, or the demand generation infrastructure. The external story changes. The internal reality doesn't. Customers notice immediately. A repositioning that hasn't touched the internal systems isn't a repositioning. It's a rebrand. And rebrands without structural change rarely hold.</p>
+        </div>
+
+        <div class="question-block">
+          <div class="question-num">Question 04</div>
+          <h3>Are we moving at the speed of the market, or the speed of our ambition?</h3>
+          <p>Ambition is good. Impatience is expensive. A brand with low market awareness can reposition more quickly than a brand with deep market penetration and years of established perception. Trying to force a fast shift on a well-known brand doesn't create momentum — it creates confusion. And confusion, at scale, looks a lot like crisis. I've seen companies undo years of brand equity in a single quarter by moving faster than the market could follow. Set the pace based on where you actually are, not where you want to be.</p>
+        </div>
+
+        <div class="question-block">
+          <div class="question-num">Question 05</div>
+          <h3>How will we know it's working — and how long are we willing to wait?</h3>
+          <p>Repositioning metrics are not campaign metrics. You're not measuring clicks and conversions in week two. You're tracking perception shifts, sales cycle changes, new audience engagement, and language shifts in how prospects describe you. Set a realistic timeline before you start. Eighteen months is a starting point, not a deadline. Leadership alignment on this timeline is not optional — without it, the repositioning gets abandoned the moment it hits its first rough quarter, which it will.</p>
+        </div>
+
+        <div class="closing">
+          <p>Repositioning done wrong feels like a company in crisis — and that perception, once formed, is far harder to undo than the original positioning ever was.</p>
+          <p>Take your time. Do the research. Reposition the infrastructure before you reposition the message. The market will follow — but only if you give it a reason to trust the direction you're heading.</p>
+        </div>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="article-sidebar fade-in">
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-label">In This Article</div>
+          <ul class="toc-list">
+            <li>Where does the brand actually live?</li>
+            <li>What are we protecting while we evolve?</li>
+            <li>Have we repositioned internally first?</li>
+            <li>Speed of market vs. speed of ambition</li>
+            <li>How will we know it's working?</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-label">About the Author</div>
+          <h4>Nicole Summerlin</h4>
+          <p>Senior marketing leader with 13+ years building brands, launching products, and driving growth across B2B manufacturing, luxury real estate, and ecommerce.</p>
+        </div>
+
+        <div class="sidebar-cta">
+          <div class="sidebar-card-label" style="color:rgba(255,255,255,0.55);">Want to Connect?</div>
+          <p>I'm actively exploring senior marketing leadership opportunities. If this thinking resonates with the kind of leader you're looking for, I'd love to talk.</p>
+          <a href="../index.html#contact">Get in Touch</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- MORE ARTICLES -->
+<section class="more-articles">
+  <div class="container">
+    <div class="label">Keep Reading</div>
+    <div class="rule"></div>
+    <p style="font-size:0.9rem;color:var(--ink-mid);max-width:48ch;">More perspectives on brand strategy, GTM execution, and marketing leadership are on the way.</p>
+    <a href="../perspectives.html" class="more-link">
+      View All Perspectives
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Nicole Summerlin. All rights reserved.</p>
+  <p>Brunswick, GA · nsummerlin@me.com</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
