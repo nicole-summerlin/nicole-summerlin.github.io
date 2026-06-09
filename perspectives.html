@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perspectives | Nicole Summerlin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azure: #1B4F8A;
+    --azure-light: #2563a8;
+    --azure-pale: #EEF3FA;
+    --azure-rule: #c8d8ee;
+    --ink: #111827;
+    --ink-mid: #374151;
+    --ink-soft: #6B7280;
+    --white: #FFFFFF;
+    --off-white: #F9FAFB;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 1120px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: var(--sans); color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+  .rule { width: 3rem; height: 2px; background: var(--azure); margin-bottom: 1.75rem; }
+  .label { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--azure); }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--azure-rule);
+    padding: 1.1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: var(--azure); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--azure); }
+
+  /* PAGE HEADER */
+  .page-header {
+    padding: 9rem 0 5rem;
+    background: var(--off-white);
+    position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(135deg, var(--azure-pale) 0%, #dce9f7 100%);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .page-header-inner { position: relative; z-index: 1; }
+  .page-header h1 {
+    font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.05; color: var(--ink);
+    margin-top: 0.75rem; margin-bottom: 1.25rem;
+  }
+  .page-header h1 em { font-style: italic; color: var(--azure); }
+  .page-header p { font-size: 1rem; line-height: 1.75; color: var(--ink-mid); max-width: 52ch; }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--azure); margin-bottom: 2rem;
+    transition: gap 0.2s;
+  }
+  .back-link:hover { gap: 0.75rem; }
+  .back-link svg { width: 14px; height: 14px; }
+
+  /* ARTICLES GRID */
+  .perspectives-section { padding: 6rem 0; background: var(--white); }
+  .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+
+  .article-card {
+    border: 1px solid var(--azure-rule);
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .article-card:hover { box-shadow: 0 8px 40px rgba(27,79,138,0.12); transform: translateY(-2px); }
+
+  .article-card-header {
+    background: var(--azure);
+    padding: 2rem 2rem 1.5rem;
+    position: relative;
+  }
+  .article-card-header.light { background: var(--azure-pale); }
+  .article-card-header.light .article-num { color: var(--azure-rule); }
+  .article-card-header.light .article-topic { color: var(--azure); }
+  .article-card-header.light h2 { color: var(--azure); }
+
+  .article-num {
+    font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
+    color: rgba(255,255,255,0.12); line-height: 1;
+    position: absolute; top: 1rem; right: 1.5rem;
+  }
+  .article-topic {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem;
+  }
+  .article-card-header h2 {
+    font-family: var(--serif); font-size: 1.35rem; font-weight: 400;
+    color: var(--white); line-height: 1.2;
+  }
+
+  .article-card-body { padding: 1.75rem 2rem; flex: 1; display: flex; flex-direction: column; }
+  .article-date { font-size: 0.72rem; color: var(--ink-soft); letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .article-excerpt { font-size: 0.875rem; line-height: 1.72; color: var(--ink-mid); flex: 1; margin-bottom: 1.5rem; }
+  .article-read-more {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--azure); border-bottom: 1px solid var(--azure-rule);
+    padding-bottom: 0.2rem; transition: gap 0.2s, border-color 0.2s;
+    align-self: flex-start;
+  }
+  .article-read-more:hover { gap: 0.75rem; border-color: var(--azure); }
+  .article-read-more svg { width: 12px; height: 12px; }
+
+  /* COMING SOON CARD */
+  .article-card-coming {
+    border: 1px dashed var(--azure-rule);
+    padding: 2.5rem 2rem;
+    display: flex; flex-direction: column; align-items: flex-start;
+    justify-content: center; min-height: 260px;
+    background: var(--off-white);
+  }
+  .coming-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.75rem; }
+  .coming-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; color: var(--ink-mid); line-height: 1.3; font-style: italic; }
+
+  /* TOPICS SECTION */
+  .topics-section { padding: 4rem 0; background: var(--azure-pale); }
+  .topics-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .topic-tag {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+    padding: 0.5rem 1.1rem; border: 1px solid var(--azure-rule);
+    color: var(--azure); background: var(--white);
+    transition: background 0.2s, color 0.2s;
+  }
+  .topic-tag:hover { background: var(--azure); color: var(--white); }
+
+  /* FOOTER */
+  footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08); padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+  @media (max-width: 900px) {
+    .articles-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Nicole Summerlin</a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#expertise">Expertise</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#work">Case Studies</a>
+    <a href="perspectives.html" class="active">Perspectives</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <div class="page-header-inner fade-in">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <div class="label">Thinking Out Loud</div>
+      <div class="rule"></div>
+      <h1>Perspec<em>tives</em></h1>
+      <p>Where I share what I've learned about brand strategy, GTM execution, and marketing leadership. Not a content calendar. A running record of how I actually think about this work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="perspectives-section">
+  <div class="container">
+    <div class="fade-in">
+      <div class="label">Published</div>
+      <div class="rule"></div>
+    </div>
+    <div class="articles-grid fade-in">
+
+      <!-- ARTICLE 01 -->
+      <div class="article-card">
+        <div class="article-card-header">
+          <div class="article-num">01</div>
+          <div class="article-topic">Brand Strategy · Repositioning</div>
+          <h2>5 Questions I Ask Before Any Brand Repositioning</h2>
+        </div>
+        <div class="article-card-body">
+          <div class="article-date">June 2026</div>
+          <p class="article-excerpt">Most brand repositioning fails before it ever reaches the customer. Not because the strategy was wrong. Not because the messaging was off. Because someone tried to do in 90 days what takes 18 months.</p>
+          <a href="perspectives/brand-repositioning.html" class="article-read-more">
+            Read Article
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- COMING SOON 01 -->
+      <div class="article-card-coming">
+        <div class="coming-label">Coming Soon</div>
+        <div class="coming-title">Why Most B2B Email Campaigns Don't Fail on Delivery — They Fail on Strategy</div>
+      </div>
+
+      <!-- COMING SOON 02 -->
+      <div class="article-card-coming">
+        <div class="coming-label">Coming Soon</div>
+        <div class="coming-title">What Building Three Marketing Departments from Scratch Taught Me About Growth</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics-section">
+  <div class="container">
+    <div class="fade-in">
+      <div class="label">Topics</div>
+      <div class="rule"></div>
+      <div class="topics-grid">
+        <span class="topic-tag">Brand Strategy</span>
+        <span class="topic-tag">Repositioning</span>
+        <span class="topic-tag">GTM Strategy</span>
+        <span class="topic-tag">Demand Generation</span>
+        <span class="topic-tag">Marketing Leadership</span>
+        <span class="topic-tag">Product Launch</span>
+        <span class="topic-tag">B2B Marketing</span>
+        <span class="topic-tag">Marketing Operations</span>
+        <span class="topic-tag">Email Marketing</span>
+        <span class="topic-tag">Content Strategy</span>
+        <span class="topic-tag">PR & Communications</span>
+        <span class="topic-tag">Team Building</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Nicole Summerlin. All rights reserved.</p>
+  <p>Brunswick, GA · nsummerlin@me.com</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
